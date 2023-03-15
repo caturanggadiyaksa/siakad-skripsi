@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
+Route::get('guru', function () { return view('guru'); })->middleware(['checkRole:guru']);
+Route::get('siswa', function () { return view('siswa'); })->middleware(['checkRole:siswa']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
