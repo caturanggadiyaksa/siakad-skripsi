@@ -14,17 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('/login');
+});
+
+Auth::routes();
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', function() {
+        return redirect('/dashboard');
+    });
 });
 
 Route::get('/admin', function () { return view('admin'); })->middleware('checkRole:admin');
 Route::get('/guru', function () { return view('guru'); })->middleware(['checkRole:guru']);
 Route::get('/siswa', function () { return view('siswa'); })->middleware(['checkRole:siswa']);
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboar');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
