@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
-Route::get('guru', function () { return view('guru'); })->middleware(['checkRole:guru']);
-Route::get('siswa', function () { return view('siswa'); })->middleware(['checkRole:siswa']);
+Route::get('/admin', function () { return view('admin'); })->middleware('checkRole:admin');
+Route::get('/guru', function () { return view('guru'); })->middleware(['checkRole:guru']);
+Route::get('/siswa', function () { return view('siswa'); })->middleware(['checkRole:siswa']);
 
 Auth::routes();
 
