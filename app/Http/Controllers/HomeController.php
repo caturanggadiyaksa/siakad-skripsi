@@ -21,8 +21,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+       
+        if ($request->user()->role == 'admin') {
+            // tampilkan dashboard admin
+            return view('dashboard.admin.home');
+        } elseif ($request->user()->role == 'guru') {
+            // tampilkan dashboard guru
+            return view('dashboard.guru.navbar');
+        } else {
+            // tampilkan halaman umum jika user tidak memiliki role yang sesuai
+            return view('dashboard.siswa.navbar');
+        }
+
+
+        // return view('home');
     }
 }
