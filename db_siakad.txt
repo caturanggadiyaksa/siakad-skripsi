@@ -1,0 +1,77 @@
+Perancangan dan Implementasi Sistem Informasi
+Akademik Berbasis Web    
+    
+    ##Tabel siswa
+    no induk
+    nama
+    id kelas
+    jenis kelamin
+    alamat
+    tanggal lahir
+    nomor telepon
+    
+    
+    
+    
+    
+    ##Tabel guru:
+    nip
+    nama
+    jenis kelamin
+    alamat
+    tanggal lahir
+    nomor telepon
+    
+    
+    
+    
+    
+    ##Tabel mata pelajaran
+    id mata pelajaran
+    nama mata pelajaran
+    id kelas
+    id guru
+    
+    
+    
+    
+    ##Tabel jadwal pelajaran
+    timestamp
+    id kelas
+    id pelajaran
+    id guru
+    
+    
+    
+    
+    
+    ##Tabel nilai siswa
+    id
+    id kelas
+    nomor induk siswa
+    id mata pelajaran
+    tanggal
+    tugas
+    uts
+    uas
+    
+    
+    
+    
+    ##Tabel absensi
+    id absen
+    nomor induk siswa
+    tanggal
+    keterangan
+    idkelas
+    
+    
+    
+    Tabel kelas
+    id kelas
+    nama kelas
+    id siswa
+    id guru
+        
+    
+    
