@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', function() {
         return redirect('/dashboard');
     });
+    Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index']);
 });
 
 Route::get('/admin', function () { return view('admin'); })->middleware('checkRole:admin');
