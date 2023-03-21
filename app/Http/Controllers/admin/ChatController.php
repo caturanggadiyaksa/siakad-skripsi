@@ -9,15 +9,18 @@ class ChatController extends Controller
 {
     //
     public function index(Request $request){
+
+        $data = ['title' => 'Chat'];
+        
         if ($request->user()->role == 'admin') {
             // tampilkan dashboard admin
-            return view('dashboard.admin.chat.home');
+            return view('dashboard.admin.chat.home', $data);
         } elseif ($request->user()->role == 'guru') {
             // tampilkan dashboard guru
-            return view('dashboard.guru.chat.home');
+            return view('dashboard.guru.chat.home', $data);
         } else {
             // tampilkan halaman umum jika user tidak memiliki role yang sesuai
-            return view('dashboard.siswa.chat.home');
+            return view('dashboard.siswa.chat.home', $data);
         }
     }
 }
