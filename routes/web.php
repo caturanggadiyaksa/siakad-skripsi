@@ -23,12 +23,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', function() {
         return redirect('/dashboard');
     });
-    Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index']);
+    Route::get('/chat', [App\Http\Controllers\admin\ChatController::class, 'index']);
+    Route::get('/keuangan', [App\Http\Controllers\admin\KeuanganController::class, 'index']);
+    Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
+    Route::get('/akses', [App\Http\Controllers\admin\AksesController::class, 'index']);
+    Route::get('/siswa', [App\Http\Controllers\admin\SiswaController::class, 'index']);
+    Route::get('/guru', [App\Http\Controllers\admin\GuruController::class, 'index']);
 });
 
 Route::get('/admin', function () { return view('admin'); })->middleware('checkRole:admin');
-Route::get('/guru', function () { return view('guru'); })->middleware(['checkRole:guru']);
-Route::get('/siswa', function () { return view('siswa'); })->middleware(['checkRole:siswa']);
+// Route::get('/guru', function () { return view('guru'); })->middleware(['checkRole:guru']);
+// Route::get('/siswa', function () { return view('siswa'); })->middleware(['checkRole:siswa']);
 
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboar');
