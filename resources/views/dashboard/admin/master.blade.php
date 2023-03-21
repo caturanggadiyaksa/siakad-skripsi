@@ -155,7 +155,7 @@
     <div class="nav-atas pt-2">
       <div class="col-12  d-flex justify-content-between align-items-center">
         <div class="row">
-          <h3 class="m-0" style="color: #303972;">Dashboard</h3>
+          <h3 class="m-0" style="color: #303972;">{{ $title }}</h3>
          
         </div>
         
