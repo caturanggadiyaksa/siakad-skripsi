@@ -24,15 +24,17 @@ class HomeController extends Controller
     public function index(Request $request)
     {
        
+        $data = ['title' => 'Dashboard'];
+
         if ($request->user()->role == 'admin') {
             // tampilkan dashboard admin
-            return view('dashboard.admin.home');
+            return view('dashboard.admin.home', $data);
         } elseif ($request->user()->role == 'guru') {
             // tampilkan dashboard guru
-            return view('dashboard.guru.navbar');
+            return view('dashboard.guru.navbar', $data);
         } else {
             // tampilkan halaman umum jika user tidak memiliki role yang sesuai
-            return view('dashboard.siswa.navbar');
+            return view('dashboard.siswa.navbar', $data);
         }
 
 
