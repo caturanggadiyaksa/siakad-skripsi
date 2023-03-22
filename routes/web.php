@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\admin\GuruController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +28,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
     Route::get('/akses', [App\Http\Controllers\admin\AksesController::class, 'index']);
     Route::get('/siswa', [App\Http\Controllers\admin\SiswaController::class, 'index']);
-    Route::get('/guru', [App\Http\Controllers\admin\GuruController::class, 'index']);
+    Route::prefix('guru')->namespace('App\Http\Controllers\admin\GuruController')->group(function () {
+        Route::get('/store', [GuruController::class, 'store']);
+        Route::get('/tambah', [GuruController::class, 'tambah']);
+        Route::get('/edit/{id}', [GuruController::class, 'edit']);
+        Route::get('/hapus/{id}', [GuruController::class, 'hapus']);
+        Route::get('/', [GuruController::class, 'index']);
+    });
+    
+    // Route::get('/guru/store', [App\Http\Controllers\admin\GuruController::class, 'store']);
+    // Route::get('/guru/tambah', [App\Http\Controllers\admin\GuruController::class, 'tambah']);
+    // Route::get('/guru', [App\Http\Controllers\admin\GuruController::class, 'index']);
+
 });
 
 Route::get('/admin', function () { return view('admin'); })->middleware('checkRole:admin');
