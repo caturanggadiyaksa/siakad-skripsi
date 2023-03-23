@@ -29,10 +29,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/akses', [App\Http\Controllers\admin\AksesController::class, 'index']);
     Route::get('/siswa', [App\Http\Controllers\admin\SiswaController::class, 'index']);
     Route::prefix('guru')->namespace('App\Http\Controllers\admin\GuruController')->group(function () {
-        Route::get('/store', [GuruController::class, 'store']);
+        Route::post('/store', [GuruController::class, 'store']);
         Route::get('/tambah', [GuruController::class, 'tambah']);
         Route::get('/edit/{id}', [GuruController::class, 'edit']);
-        Route::get('/hapus/{id}', [GuruController::class, 'hapus']);
+        Route::get('/delete/{id}', [GuruController::class, 'delete']);
+        Route::get('/show/{id}', [GuruController::class, 'show']);
         Route::get('/', [GuruController::class, 'index']);
     });
     
