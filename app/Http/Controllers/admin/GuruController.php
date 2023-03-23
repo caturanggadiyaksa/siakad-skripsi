@@ -37,6 +37,10 @@ class GuruController extends Controller
 
         Guru::create([
             'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'nama' => $request->nama,
             'alamat' => $request->alamat
         ]);
 
@@ -44,8 +48,9 @@ class GuruController extends Controller
     }
 
     public function edit($id) {
+        $data = ['title' => 'Edit Data Guru'];
         $guru = Guru::find($id);
-        return view('dashboard.admin.crud.guru.edit', ['guru' => $guru]);
+        return view('dashboard.admin.crud.guru.edit', ['guru' => $guru], $data);
     }
 
     public function update($id, Request $request) {
@@ -61,9 +66,15 @@ class GuruController extends Controller
         return redirect('/guru');
     }
 
-    public function hapus($id) {
+    public function delete($id) {
         $guru = Guru::find($id);
         $guru->delete();
         return redirect('/guru');
+    }
+
+    public function show($id) {
+        $data = ['title' => 'Show Data Guru'];
+        $guru = Guru::find($id);
+        return view('dashboard.admin.crud.guru.show', ['guru' => $guru], $data);
     }
 }
