@@ -59,10 +59,18 @@
                     <th>2014</th>
                     <th>steven</th>
                     <th>Bekasi</th>
-                    <th>
-                        <a href="">Show</a>
-                        <a href="">Edit</a>
-                        <a href="">Delete</a>
+                    <th style="font-size: 18px !important;">
+                        <a href="">
+                            <button style="font-size: 12px !important; color:#FFFFFF !important; text-transform: none !important;" class="btn btn-primary">Show</button>
+                        </a>
+                        <a href="">
+                            <button style="font-size: 12px !important; color:#FFFFFF !important; text-transform: none !important;" class="btn btn-warning">Edit</button>
+                        </a>
+                        <a href="">
+                            <a style="font-size: 12px !important; color:#FFFFFF !important; text-transform: none !important;" class="btn btn-danger">Delete</a>
+                        </a>
+                       
+                      
                     </th>
                   
                     
