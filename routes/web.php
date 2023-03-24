@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\GuruController;
 use App\Http\Controllers\admin\SiswaController;
+use App\Http\Controllers\admin\AksesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/chat', [App\Http\Controllers\admin\ChatController::class, 'index']);
     Route::get('/keuangan', [App\Http\Controllers\admin\KeuanganController::class, 'index']);
     Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
-    Route::get('/akses', [App\Http\Controllers\admin\AksesController::class, 'index']);
+   
+    Route::prefix('akses')->namespace('App\Http\Controllers\admin\AksesController')->group(function () {
+        Route::post('/store', [AksesController::class, 'store']);
+        Route::get('/tambah', [AksesController::class, 'tambah']);
+        Route::get('/edit/{id}', [AksesController::class, 'edit']);
+        Route::put('/update/{id}', [AksesController::class, 'update']);
+        Route::get('/delete/{id}', [AksesController::class, 'delete']);
+        Route::get('/show/{id}', [AksesController::class, 'show']);
+        Route::get('/', [AksesController::class, 'index']);
+    });
     Route::prefix('siswa')->namespace('App\Http\Controllers\admin\SiswaController')->group(function () {
         Route::post('/store', [SiswaController::class, 'store']);
         Route::get('/tambah', [SiswaController::class, 'tambah']);
@@ -37,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/show/{id}', [SiswaController::class, 'show']);
         Route::get('/', [SiswaController::class, 'index']);
     });
-    // Route::get('/siswa', [App\Http\Controllers\admin\SiswaController::class, 'index']);
+    
     Route::prefix('guru')->namespace('App\Http\Controllers\admin\GuruController')->group(function () {
         Route::post('/store', [GuruController::class, 'store']);
         Route::get('/tambah', [GuruController::class, 'tambah']);
