@@ -35,8 +35,8 @@ class SiswaController extends Controller
         ]);
 
         Siswa::create([
-            'nip' => $request->nip,
             'nama' => $request->nama,
+            'id_kelas' => $request->id_kelas,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -59,8 +59,8 @@ class SiswaController extends Controller
         // ]);
 
         $siswa = Siswa::find($id);
-        $siswa->nip = $request->nip;
         $siswa->nama = $request->nama;
+        $siswa->id_kelas = $request->id_kelas;
         $siswa->jenis_kelamin = $request->jenis_kelamin;
         $siswa->alamat = $request->alamat;
         $siswa->tanggal_lahir = $request->tanggal_lahir;
