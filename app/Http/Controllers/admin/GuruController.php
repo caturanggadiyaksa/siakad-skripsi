@@ -36,12 +36,12 @@ class GuruController extends Controller
         ]);
 
         Guru::create([
+            'nip' => $request->nip,
             'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'nama' => $request->nama,
-            'alamat' => $request->alamat
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'nomor_telepon' => $request->no_telepon
         ]);
 
         return redirect('/guru');
@@ -54,15 +54,20 @@ class GuruController extends Controller
     }
 
     public function update($id, Request $request) {
-        $this->validate($request, [
-            'nama' => 'required',
-            'alamat' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'nama' => 'required',
+        //     'alamat' => 'required'
+        // ]);
 
         $guru = Guru::find($id);
+        $guru->nip = $request->nip;
         $guru->nama = $request->nama;
+        $guru->jenis_kelamin = $request->jenis_kelamin;
         $guru->alamat = $request->alamat;
+        $guru->tanggal_lahir = $request->tanggal_lahir;
+        $guru->nomor_telepon = $request->no_telepon;
         $guru->save();
+        // dd( $guru->nomor_telepon);
         return redirect('/guru');
     }
 
