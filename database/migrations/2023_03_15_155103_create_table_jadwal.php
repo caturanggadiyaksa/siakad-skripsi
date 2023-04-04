@@ -16,8 +16,11 @@ class CreateTableJadwal extends Migration
         Schema::create('table_jadwal', function (Blueprint $table) {
             $table->id();
             $table->integer('id_kelas');
-            $table->integer('id_pelajaran');
+            $table->integer('id_mapel');
             $table->integer('id_guru');
+            $table->string('hari');
+            $table->string('jam-mulai');
+            $table->string('jam-selesai');
             $table->timestamps();
         });
     }
