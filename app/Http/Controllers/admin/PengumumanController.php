@@ -12,11 +12,37 @@ class PengumumanController extends Controller
         $data = ['title' => 'Pengumuman'];
         
         if ($request->user()->role == 'admin') {
-            // dd($request->user()->role);
+           
             return view('dashboard.admin.pengumuman', $data);
-        } else {
+        } elseif ($request->user()->role == 'siswa') {
+           
+            return view('dashboard.siswa.pengumuman', $data);
+        }else {
             
-            return view('dashboard.guru.pengumuman', $data);
+            return view('/login');
         }
+    }
+
+    public function tambah() {
+        $data = ['title' => 'Add New Pengumuman'];
+        return view('dashboard.admin.crud.pengumuman.create', $data);
+
+    }
+    public function store(Request $request) {
+        $this->validate($request, [
+            'nama' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        Siswa::create([
+            'nama' => $request->nama,
+            'id_kelas' => $request->id_kelas,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'nomor_telepon' => $request->no_telepon
+        ]);
+
+        return redirect('/pengumuman');
     }
 }
