@@ -35,10 +35,7 @@ class AksesController extends Controller
 
     }
     public function store(Request $request) {
-        $this->validate($request, [
-            'nama' => 'required',
-            'alamat' => 'required'
-        ]);
+        
 
         User::create([
             'name' => $request['name'],
@@ -46,13 +43,13 @@ class AksesController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect('/user');
+        return redirect('/akses');
     }
 
     public function edit($id) {
         $data = ['title' => 'Edit Data user'];
         $user = User::find($id);
-        return view('dashboard.admin.crud.user.edit', ['user' => $user], $data);
+        return view('dashboard.admin.crud.akses.edit', ['user' => $user], $data);
     }
 
     public function update($id, Request $request) {
@@ -68,18 +65,18 @@ class AksesController extends Controller
       
         $user->save();
         // dd( $guru->nomor_telepon);
-        return redirect('/user');
+        return redirect('/akses');
     }
 
     public function delete($id) {
         $user = User::find($id);
         $user->delete();
-        return redirect('/user');
+        return redirect('/akses');
     }
 
     public function show($id) {
         $data = ['title' => 'Show Data user'];
         $user = User::find($id);
-        return view('dashboard.admin.crud.user.show', ['user' => $user], $data);
+        return view('dashboard.admin.crud.akses.show', ['user' => $user], $data);
     }
 }
