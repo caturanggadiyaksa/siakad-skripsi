@@ -17,9 +17,12 @@ class SiswaController extends Controller
             // dd($request->user()->role);
             $siswa = Siswa::all();
             return view('dashboard.admin.siswa', $data, ['siswa' => $siswa]);
+        }elseif ($request->user()->role == 'guru'){
+            $siswa = Siswa::all();
+            return view('dashboard.guru.siswa', $data,  ['siswa' => $siswa]);
         } else {
-            
-            return view('dashboard.guru.siswa', $data);
+            $siswa = Siswa::all();
+            return view('dashboard.siswa.siswa', $data,  ['siswa' => $siswa]);
         }
     }
 
