@@ -14,9 +14,11 @@ class ChatController extends Controller
         } elseif ($request->user()->role == 'guru') {
             // tampilkan dashboard guru
             return view('dashboard.guru.chat.home');
+        } elseif ($request->user()->role == 'siswa'){
+            return view('dashboard.siswa.chat');
         } else {
             // tampilkan halaman umum jika user tidak memiliki role yang sesuai
-            return view('dashboard.siswa.chat.home');
+            return redirect('/login');
         }
     }
 }
