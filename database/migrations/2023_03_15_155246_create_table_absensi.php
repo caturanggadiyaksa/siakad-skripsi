@@ -15,9 +15,9 @@ class CreateTableAbsensi extends Migration
     {
         Schema::create('table_absensi', function (Blueprint $table) {
             $table->id();
-            $table->string('no_induk_siswa');
-            $table->integer('id_pelajaran');
-            $table->integer('id_kelas');
+            $table->string('id_siswa');
+            $table->date('tanggal_absen');
+            $table->integer('id_mapel');
             $table->string('keterangan');
             $table->timestamps();
         });
