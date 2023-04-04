@@ -16,8 +16,8 @@ class CreateTableMapel extends Migration
         Schema::create('table_mapel', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->integer('id_kelas');
-            $table->integer('id_guru');
+            // $table->integer('id_kelas');
+            // $table->integer('id_guru');
             $table->timestamps();
         });
     }
