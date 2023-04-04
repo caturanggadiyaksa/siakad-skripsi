@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\GuruController;
 use App\Http\Controllers\admin\SiswaController;
 use App\Http\Controllers\admin\AksesController;
+use App\Http\Controllers\admin\PengumumanController;
+use App\Http\Controllers\admin\DashboardAdminController;
+use App\Http\Controllers\guru\DashboardGuruController;
+
+use App\Http\Middleware\CheckRole;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,13 +26,30 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home', function() {
+    return redirect('/dashboard');
+});
+
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', function() {
-        return redirect('/dashboard');
-    });
+  
+    Route::get('/ujian', [App\Http\Controllers\guru\UjianController::class, 'index']);
+    Route::get('/nilai', [App\Http\Controllers\guru\NilaiController::class, 'index']);
+    Route::get('/tugas', [App\Http\Controllers\guru\TugasController::class, 'index']);
+    Route::get('/absen', [App\Http\Controllers\guru\AbsenController::class, 'index']);
+    Route::get('/jadwal', [App\Http\Controllers\guru\JadwalController::class, 'index']);
+   
     Route::get('/chat', [App\Http\Controllers\admin\ChatController::class, 'index']);
     Route::get('/keuangan', [App\Http\Controllers\admin\KeuanganController::class, 'index']);
-    Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
+    // Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
+    Route::prefix('pengumuman')->namespace('App\Http\Controllers\admin\PengumumanController')->group(function () {
+        Route::post('/store', [PengumumanController::class, 'store']);
+        Route::get('/tambah', [PengumumanController::class, 'tambah']);
+        Route::get('/edit/{id}', [PengumumanController::class, 'edit']);
+        Route::put('/update/{id}', [PengumumanController::class, 'update']);
+        Route::get('/delete/{id}', [PengumumanController::class, 'delete']);
+        Route::get('/show/{id}', [PengumumanController::class, 'show']);
+        Route::get('/', [PengumumanController::class, 'index']);
+    });
    
     Route::prefix('akses')->namespace('App\Http\Controllers\admin\AksesController')->group(function () {
         Route::post('/store', [AksesController::class, 'store']);
@@ -62,6 +84,15 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
+// Route::prefix('dashboard')->middleware(['auth', 'role'])->group(function () {
+//     Route::middleware(['role:guru'])->group(function () {
+//         Route::get('/', [DashboardGuruController::class, 'index'])->name('dashboard.guru');
+//     });
+
+//     Route::middleware(['role:admin'])->group(function () {
+//         Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboard.admin');
+//     });
+// });
 
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboar');
