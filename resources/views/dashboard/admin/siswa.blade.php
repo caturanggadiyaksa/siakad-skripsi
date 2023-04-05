@@ -27,10 +27,13 @@
             <div class="col-6">
         
                 <div class="d-flex justify-content-center align-items-center" style="width: 150px; height: 40px; border-radius: 40px; padding: 6px 15px; background: #4D44B5; ">
-                    <button style="border: none; background-color: transparent; color: #FFFFFF;">
-                        <i class="fa-regular fa-plus"></i>
-                       <span>Add New</span>
-                    </button>
+                    <a href="/siswa/tambah">
+                        <button style="border: none; background-color: transparent; color: #FFFFFF;">
+                            <i class="fa-regular fa-plus"></i>
+                            <span>Add New</span>
+                        </button>
+                    </a>
+                    
                 </div>
             </div>
         </div>
@@ -44,30 +47,31 @@
                 <tr>
                     <th>Nama</th>
                     <th>Kelas</th>
-                    <th>Jurusan</th>
-                    <th>Tahun Masuk</th>
-                    <th>Nama Orang Tua</th>
-                    <th>Alamat</th>
+                    {{-- <th>Jurusan</th>
+                    <th>Tahun Masuk</th> --}}
+                    <th>Tanggal Lahir</th>
+                    <th>Nomor Telepon</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($siswa as $s)
                 <tr>
-                    <th>Angga</th>
-                    <th>VII A</th>
-                    <th>Ips</th>
-                    <th>2014</th>
-                    <th>steven</th>
-                    <th>Bekasi</th>
+                    <th>{{ $s->nama }}</th>
+                    <th>{{ $s->id_kelas }}</th>
+                    {{-- <th>{{ $s->jenis_kelamin }}</th>
+                    <th>{{ $s->alamat }}</th> --}}
+                    <th>{{ $s->tanggal_lahir }}</th>
+                    <th>{{ $s->nomor_telepon }}</th>
                     <th style="font-size: 18px !important;">
-                        <a href="">
+                        <a href="/siswa/show/{{ $s->id }}">
                             <button style="font-size: 12px !important; color:#FFFFFF !important; text-transform: none !important;" class="btn btn-primary">Show</button>
                         </a>
-                        <a href="">
+                        <a href="/siswa/edit/{{ $s->id }}">
                             <button style="font-size: 12px !important; color:#FFFFFF !important; text-transform: none !important;" class="btn btn-warning">Edit</button>
                         </a>
-                        <a href="">
-                            <a style="font-size: 12px !important; color:#FFFFFF !important; text-transform: none !important;" class="btn btn-danger">Delete</a>
+                        <a href="/siswa/delete/{{ $s->id }}">
+                            <button style="font-size: 12px !important; color:#FFFFFF !important; text-transform: none !important;" class="btn btn-danger">Delete</button>
                         </a>
                        
                       
@@ -75,6 +79,7 @@
                   
                     
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
