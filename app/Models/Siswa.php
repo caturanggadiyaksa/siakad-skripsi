@@ -18,4 +18,14 @@ class Siswa extends Model
         'tanggal_lahir', 
         'nomor_telepon',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function absen()
+    {
+        return $this->hasMany(Absen::class, 'id_siswa');
+    }
+   
+   
 }
