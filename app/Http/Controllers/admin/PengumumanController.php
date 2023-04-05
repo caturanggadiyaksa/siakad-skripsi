@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Pengumuman;
 
 class PengumumanController extends Controller
 {
@@ -14,9 +15,11 @@ class PengumumanController extends Controller
         if ($request->user()->role == 'admin') {
            
             return view('dashboard.admin.pengumuman', $data);
+
         } elseif ($request->user()->role == 'siswa') {
-           
-            return view('dashboard.siswa.pengumuman', $data);
+            $pengumuman = Pengumuman::all();
+            return view('dashboard.siswa.pengumuman', $data, ['pengumuman' => $pengumuman]);
+            
         }else {
             
             return view('/login');
