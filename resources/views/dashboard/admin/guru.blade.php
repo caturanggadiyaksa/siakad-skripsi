@@ -42,54 +42,7 @@
     </div>
 
 
-    {{-- <div class="mt-2">
-        <div class="container py-5 ">
-            <div class="row d-flex justify-content-center align-items-center">
-              <div class="col-md-12 col-xl-4">
-        
-                @foreach ($guru as $g)
-                    <div class="card" style="border-radius: 15px;">
-                        <div class="card-body text-center">
-                            <div class="d-flex justify-content-center align-items-center mt-2 mb-1">
-                                <div class="rounded-circle img-fluid bg-danger" style="width: 100px; height: 100px;">
-                                    <img src=""
-                                    class="rounded-circle img-fluid bg-danger" style="width: 100px;" />
-                                </div>
-                            </div>
-                            <h4 class="mb-1">{{ $g->nama }}</h4>
-                            <p class="text-muted mb-2">Ips</p>
-                            <div class="mb-4 pb-2">
-                                <button type="button" class="btn rounded-circle" style="background: #4D44B5; color: #ffffff">
-                                    <i class="fa-regular fa-phone fa-sm"></i>
-                                </button>
-                                <button type="button"class="btn rounded-circle" style="background: #4D44B5; color: #ffffff">
-                                    <i class="fa-regular fa-envelope fa-sm"></i>
-                                </button>
-                            
-                            </div>
-                            <div class="mb-2 pb-2 gap-2" style="color:#FFFFFF;">
-                                <a  style="color:#FFFFFF;" href="/guru/show/{{ $g->id }}" class="bg-primary px-2 py-2 rounded " >
-                                Show
-                                </a>
-                                <a style="color:#FFFFFF;" href="/guru/edit/{{ $g->id }}" class="bg-warning px-2 py-2 mx-2 rounded" >
-                                    Edit
-                                </a>
-                                <a style="color:#FFFFFF;" href="/guru/delete/{{ $g->id }}" class="bg-danger px-2 py-2 rounded" >
-                                    Delete
-                                </a>
-                            
-                            </div>
-                            
-                        </div>
-                    </div>
-                @endforeach
-                
-        
-              </div>
-            </div>
-        </div>
-        
-    </div> --}}
+   
     <div class="mt-2">
         <div class="container py-5 ">
             <div class="row justify-content-center align-items-center">
