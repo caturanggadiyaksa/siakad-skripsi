@@ -5,6 +5,7 @@
  
 
 @section('konten')
+
 <div class="container-fluid">
 	<section class="h-100 gradient-custom-2">
 		<div class="container py-5 h-100">
@@ -22,22 +23,31 @@
 				  
 				</div>
 				<div class="" style="margin: 2rem 0 0 2rem;" >
-					<h5>Andy Horwitz</h5>
-					<p>New York</p>
+					<h5>{{ Auth::user()->name }}</h5>
+					<p>{{ Auth::user()->role }}</p>
 				  </div>
 				<div class="p-4 text-black" >
-				  <div class="d-flex  text-center py-1">
-					<div class="d-flex">
-					  <p class="mb-1 h5">253</p>
-					  <p class="small text-muted mb-0">Photos</p>
+				  <div class="d-flex  align-items-center text-center py-1">
+					<div class="d-flex align-items-center">
+						<div class="d-flex justify-content-center align-items-center" style="background-color: #FB7D5B; border-radius: 40px; width: 40px; height: 40px;">
+							<i style="color: #f8f9fa;" class="fa-regular fa-location-dot fa-xl"></i>
+						</div>
+						
+					  <p class="  mb-0 mx-1" style="color: #303972;">Bekasi, Indonesia</p>
 					</div>
-					<div class="px-3 d-flex">
-					  <p class="mb-1 h5">1026</p>
-					  <p class="small text-muted mb-0">Followers</p>
+					<div class="px-3 d-flex align-items-center">
+						<div class="d-flex justify-content-center align-items-center" style="background-color: #FB7D5B; border-radius: 40px; width: 40px; height: 40px;">
+							<i style="color: #f8f9fa;" class="fa-regular fa-phone fa-xl"></i>
+						</div>
+						
+					  <p class=" mx-1 mb-0" style="color: #303972;">+62 8977 6372 62</p>
 					</div>
-					<div class="d-flex">
-					  <p class="mb-1 h5">478</p>
-					  <p class="small text-muted mb-0">Following</p>
+					<div class="d-flex align-items-center">
+						<div class="d-flex justify-content-center align-items-center" style="background-color: #FB7D5B; border-radius: 40px; width: 40px; height: 40px;">
+							<i style="color: #f8f9fa;" class="fa-regular fa-envelope fa-xl"></i>
+						</div>
+						
+					  <p class=" mx-1 mb-0" style="color: #303972;">{{ Auth::user()->email }}</p>
 					</div>
 				  </div>
 				</div>
