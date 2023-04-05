@@ -174,8 +174,8 @@
           <i class="far fa-gear fa-lg mr-3"></i>
           <i class="far fa-bell fa-lg mr-3"></i>
           <div class="ml-3">
-            <p style="color: #303972;" class="m-0">Ahmad</p>
-            <span style="color: #A098AE;" class="m-0">guru</span>
+            <p style="color: #303972;" class="m-0"> {{ Auth::user()->name }}</p>
+            <span style="color: #A098AE;" class="m-0"> {{ Auth::user()->role }}</span>
           </div>
           <div class="profil"></div>
         </div>
