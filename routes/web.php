@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\AksesController;
 use App\Http\Controllers\admin\PengumumanController;
 use App\Http\Controllers\admin\DashboardAdminController;
 use App\Http\Controllers\guru\DashboardGuruController;
+use App\Http\Controllers\admin\KeuanganController;
 
 use App\Http\Middleware\CheckRole;
 /*
@@ -39,7 +40,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/jadwal', [App\Http\Controllers\guru\JadwalController::class, 'index']);
    
     Route::get('/chat', [App\Http\Controllers\admin\ChatController::class, 'index']);
-    Route::get('/keuangan', [App\Http\Controllers\admin\KeuanganController::class, 'index']);
+    // Route::get('/keuangan', [App\Http\Controllers\admin\KeuanganController::class, 'index']);
+
+    Route::prefix('keuangan')->namespace('App\Http\Controllers\admin\KeuanganController')->group(function () {
+        Route::post('/a/store', [KeuanganController::class, 'storeSekolah']);
+        Route::get('/a/tambah', [KeuanganController::class, 'tambahSekolah']);
+        Route::post('/b/store', [KeuanganController::class, 'storeSiswa']);
+        Route::get('/b/tambah', [KeuanganController::class, 'tambahSiswa']);
+        // Route::get('/edit/{id}', [KeuanganController::class, 'edit']);
+        // Route::put('/update/{id}', [KeuanganController::class, 'update']);
+        // Route::get('/delete/{id}', [KeuanganController::class, 'delete']);
+        // Route::get('/show/{id}', [KeuanganController::class, 'show']);
+        Route::get('/', [KeuanganController::class, 'index']);
+    });
+
     // Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
     Route::prefix('pengumuman')->namespace('App\Http\Controllers\admin\PengumumanController')->group(function () {
         Route::post('/store', [PengumumanController::class, 'store']);
