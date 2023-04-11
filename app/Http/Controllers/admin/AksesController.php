@@ -41,6 +41,7 @@ class AksesController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'role' => $request['role']
         ]);
 
         return redirect('/akses');
@@ -61,7 +62,8 @@ class AksesController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        // $user->password = Hash::make($request->password);
       
         $user->save();
         // dd( $guru->nomor_telepon);
