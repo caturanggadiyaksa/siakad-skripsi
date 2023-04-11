@@ -14,7 +14,10 @@ class ChatController extends Controller
         
         if ($request->user()->role == 'admin') {
             // tampilkan dashboard admin
-            return view('dashboard.admin.chat.home', $data);
+
+            $user = User::all();
+
+            return view('dashboard.admin.chat.home', $data, ['user' => $user]);
         } elseif ($request->user()->role == 'guru') {
             // tampilkan dashboard guru
             return view('dashboard.guru.chat.home', $data);
