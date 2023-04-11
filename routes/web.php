@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\PengumumanController;
 use App\Http\Controllers\admin\DashboardAdminController;
 use App\Http\Controllers\guru\DashboardGuruController;
 use App\Http\Controllers\admin\KeuanganController;
+// use App\Http\Controllers\guru\PengumumanController;
 
 use App\Http\Middleware\CheckRole;
 /*
@@ -55,7 +56,18 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     // Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
-    Route::prefix('pengumuman')->namespace('App\Http\Controllers\admin\PengumumanController')->group(function () {
+    // Route::prefix('pengumuman')->namespace('App\Http\Controllers\admin\PengumumanController')->group(function () {
+    //     Route::post('/store', [PengumumanController::class, 'store']);
+    //     Route::get('/tambah', [PengumumanController::class, 'tambah']);
+    //     Route::get('/edit/{id}', [PengumumanController::class, 'edit']);
+    //     Route::put('/update/{id}', [PengumumanController::class, 'update']);
+    //     Route::get('/delete/{id}', [PengumumanController::class, 'delete']);
+    //     Route::get('/show/{id}', [PengumumanController::class, 'show']);
+    //     Route::get('/', [PengumumanController::class, 'index']);
+    // });
+
+
+    Route::prefix('pengumuman')->middleware('admin')->namespace('App\Http\Controllers\admin\PengumumanController')->group(function () {
         Route::post('/store', [PengumumanController::class, 'store']);
         Route::get('/tambah', [PengumumanController::class, 'tambah']);
         Route::get('/edit/{id}', [PengumumanController::class, 'edit']);
@@ -64,6 +76,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/show/{id}', [PengumumanController::class, 'show']);
         Route::get('/', [PengumumanController::class, 'index']);
     });
+    
+    // Route::prefix('pengumuman')->middleware('siswa')->namespace('App\Http\Controllers\siswa\PengumumanController')->group(function () {
+    //     Route::get('/', [PengumumanController::class, 'index']);
+    // });
+    
+    // Route::prefix('pengumuman')->middleware('guru')->namespace('App\Http\Controllers\guru\PengumumanController')->group(function () {
+    //     Route::get('/', [PengumumanController::class, 'index']);
+    // });
+    
    
     Route::prefix('akses')->namespace('App\Http\Controllers\admin\AksesController')->group(function () {
         Route::post('/store', [AksesController::class, 'store']);
