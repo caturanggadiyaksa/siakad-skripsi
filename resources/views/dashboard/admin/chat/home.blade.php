@@ -138,8 +138,9 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="rounded-circle" style="width: 35px; height: 35px; background-color:#A098AE;"></div>
                                 <div class="ml-3">
-                                    <p style="color: #303972;" class="m-0">Ahmad</p>
-                                    <span style="color: #A098AE;" class="m-0">guru</span>
+                                   
+                                    <p style="color: #303972;" class="m-0">{{ Auth::user()->name }}</p>
+                                    <span style="color: #A098AE;" class="m-0">{{ Auth::user()->role }}</span>
                                 </div>
                             </div>
                             <div>
