@@ -37,7 +37,7 @@
                                             </div>
                                             <div class="col">
                                                 <p style="color: #303972;" class="m-0">{{ $p->tgl_posting }}</p>
-                                                <span style="color: #A098AE;" class="m-0">19.00 - 20.00</span>
+                                                {{-- <span style="color: #A098AE;" class="m-0">19.00 - 20.00</span> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                     <div id="btn-pengumuman" class="col-4 d-flex justify-content-center align-items-center" style="height: 8rem;">
                                         <div>
                                             {{-- {{ $p->id }} --}}
-                                            <a href="/pengumuman/show">
+                                            <a href="/pengumuman/show/{{ $p->id }}">
                                                 <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 40px; border-radius: 40px; padding: 6px 15px; background: #4D44B5;">
                                                     <button style="border: none; background-color: transparent; color: #FFFFFF;" class="align-items-center">
                                                         <span>View</span>
