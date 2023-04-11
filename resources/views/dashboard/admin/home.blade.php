@@ -51,7 +51,7 @@
 					</div>
 				  </div>
 				</div>
-				<div class="card-body p-4 text-black">
+				{{-- <div class="card-body p-4 text-black">
 				  <div class="mb-5">
 					<p class="lead fw-normal mb-1">About</p>
 					<div class="p-4" style="background-color: #f8f9fa;">
@@ -82,7 +82,7 @@
 						</div>
 				  </div>
 	
-				</div>
+				</div> --}}
 			  </div>
 			</div>
 		  </div>
