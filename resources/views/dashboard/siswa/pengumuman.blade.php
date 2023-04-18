@@ -7,14 +7,14 @@
         <div class="col-8 card" style="min-height: 85vh; border-radius: 20px;">
             {{-- <div class="card"></div> --}}
             <div class="container mt-1">
-                <a href="/pengumuman/tambah">
+                {{-- <a href="/pengumuman/tambah">
                     <div class="d-flex justify-content-center align-items-center mt-4" style="width: 150px; height: 40px; border-radius: 40px; padding: 6px 15px; background: #4D44B5; ">
                         <button style="border: none; background-color: transparent; color: #FFFFFF;">
                             <i class="fa-regular fa-plus"></i>
                            <span>Add New</span>
                         </button>
                     </div>
-                </a>
+                </a> --}}
             </div>
             
 
@@ -45,7 +45,7 @@
                                     <div id="btn-pengumuman" class="col-4 d-flex justify-content-center align-items-center" style="height: 8rem;">
                                         <div>
                                             {{-- {{ $p->id }} --}}
-                                            <a href="/pengumuman/show/{{ $p->id }}">
+                                            <a href="/pengumuman/siswa/show/{{ $p->id }}">
                                                 <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 40px; border-radius: 40px; padding: 6px 15px; background: #4D44B5;">
                                                     <button style="border: none; background-color: transparent; color: #FFFFFF;" class="align-items-center">
                                                         <span>View</span>
