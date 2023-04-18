@@ -26,6 +26,11 @@ class Siswa extends Model
     {
         return $this->hasMany(Absen::class, 'id_siswa');
     }
+
+    public function biayasiswa()
+    {
+        return $this->hasMany(BiayaSiswa::class, 'siswa_id');
+    }
    
    
 }
