@@ -104,21 +104,14 @@
       
     </li>
     <li class="">
-      <a href="/pengumuman">
+      <a href="/pengumuman/siswa">
         <i class="fa-regular fa-bullhorn fa-lg"></i>
         <span>Pengumuman</span>
       
       </a>
       
     </li>
-    <li class="">
-      <a href="/mapel">
-        <i class="fa-regular fa-user fa-lg"></i>
-        <span>Mata Pelajaran</span>
-      
-      </a>
-      
-    </li>
+  
     <li class="">
       <a href="/siswa">
         <i class="fa-regular fa-user-graduate fa-lg"></i>
