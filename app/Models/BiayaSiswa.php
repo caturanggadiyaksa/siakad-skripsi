@@ -9,4 +9,9 @@ class BiayaSiswa extends Model
 {
     use HasFactory;
     protected $table = "biaya_siswa";
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
 }
