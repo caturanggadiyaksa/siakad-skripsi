@@ -8,7 +8,7 @@ use App\Http\Controllers\admin\PengumumanController;
 use App\Http\Controllers\admin\DashboardAdminController;
 use App\Http\Controllers\guru\DashboardGuruController;
 use App\Http\Controllers\admin\KeuanganController;
-// use App\Http\Controllers\guru\PengumumanController;
+use App\Http\Controllers\siswa\SiswaPengumumanController;
 
 use App\Http\Middleware\CheckRole;
 /*
@@ -55,34 +55,39 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', [KeuanganController::class, 'index']);
     });
 
-    // Route::get('/pengumuman', [App\Http\Controllers\admin\PengumumanController::class, 'index']);
-    // Route::prefix('pengumuman')->namespace('App\Http\Controllers\admin\PengumumanController')->group(function () {
-    //     Route::post('/store', [PengumumanController::class, 'store']);
-    //     Route::get('/tambah', [PengumumanController::class, 'tambah']);
-    //     Route::get('/edit/{id}', [PengumumanController::class, 'edit']);
-    //     Route::put('/update/{id}', [PengumumanController::class, 'update']);
-    //     Route::get('/delete/{id}', [PengumumanController::class, 'delete']);
-    //     Route::get('/show/{id}', [PengumumanController::class, 'show']);
-    //     Route::get('/', [PengumumanController::class, 'index']);
-    // });
 
-
-    Route::prefix('pengumuman')->middleware('admin')->namespace('App\Http\Controllers\admin\PengumumanController')->group(function () {
-        Route::post('/store', [PengumumanController::class, 'store']);
-        Route::get('/tambah', [PengumumanController::class, 'tambah']);
-        Route::get('/edit/{id}', [PengumumanController::class, 'edit']);
-        Route::put('/update/{id}', [PengumumanController::class, 'update']);
-        Route::get('/delete/{id}', [PengumumanController::class, 'delete']);
-        Route::get('/show/{id}', [PengumumanController::class, 'show']);
-        Route::get('/', [PengumumanController::class, 'index']);
+    Route::prefix('pengumuman')->group(function () {
+        Route::middleware(['auth'])->group(function () {
+            Route::get('/', 'App\Http\Controllers\admin\PengumumanController@index');
+            Route::get('/tambah', 'App\Http\Controllers\admin\PengumumanController@tambah')->middleware('admin');
+            Route::post('/store', 'App\Http\Controllers\admin\PengumumanController@store')->middleware('admin');
+            Route::get('/edit/{id}', 'App\Http\Controllers\admin\PengumumanController@edit')->middleware('admin');
+            Route::put('/update/{id}', 'App\Http\Controllers\admin\PengumumanController@update')->middleware('admin');
+            Route::get('/delete/{id}', 'App\Http\Controllers\admin\PengumumanController@delete')->middleware('admin');
+            Route::get('/show/{id}', 'App\Http\Controllers\admin\PengumumanController@show')->middleware('admin');
+            Route::get('/siswa', 'App\Http\Controllers\siswa\SiswaPengumumanController@index')->middleware('siswa');
+            Route::get('/siswa/show/{id}', 'App\Http\Controllers\siswa\SiswaPengumumanController@show')->middleware('siswa');
+        });
     });
     
-    // Route::prefix('pengumuman')->middleware('siswa')->namespace('App\Http\Controllers\siswa\PengumumanController')->group(function () {
-    //     Route::get('/', [PengumumanController::class, 'index']);
-    // });
-    
-    // Route::prefix('pengumuman')->middleware('guru')->namespace('App\Http\Controllers\guru\PengumumanController')->group(function () {
-    //     Route::get('/', [PengumumanController::class, 'index']);
+   
+
+    // Route::prefix('pengumuman')->group(function () {
+    //     Route::middleware(['auth'])->group(function () {
+    //         Route::get('/', 'PengumumanController@index');
+    //         Route::middleware(['admin'])->namespace('App\Http\Controllers\admin')->group(function () {
+                
+    //             Route::get('/tambah', 'PengumumanController@tambah');
+    //             Route::post('/store', 'PengumumanController@store');
+    //             Route::get('/edit/{id}', 'PengumumanController@edit');
+    //             Route::put('/update/{id}', 'PengumumanController@update');
+    //             Route::get('/delete/{id}', 'PengumumanController@delete');
+    //             Route::get('/show/{id}', 'PengumumanController@show');
+    //         });
+    //         Route::middleware(['siswa'])->namespace('App\Http\Controllers\siswa')->group(function () {
+    //             Route::get('/', 'SiswaPengumumanController@index');
+    //         });
+    //     });
     // });
     
    
