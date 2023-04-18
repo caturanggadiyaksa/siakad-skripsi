@@ -72,7 +72,7 @@
 
 				<div class="card-body">
 					<div class="row">
-
+						@foreach ($biayasekolah as $b)
 						<div class="my-2 d-flex align-items-center" style="">
 							<div class="mx-4">
 								<div class="d-flex align-items-center justify-content-center" style="background-color: #FF4550; border-radius: 40px; width: 40px; height: 40px;">
@@ -81,62 +81,20 @@
 							</div>
 							<div class="mx-4">
 								<div  style="display: flex; flex-direction: column;">
-									<span class="card-text">#232121</span>
-									<span class="card-text">2 March 2021, 13:45 PM</span>
+									<span class="card-text">{{ $b->invoice }}</span>
+									<span class="card-text">{{ $b->tanggal_pengeluaran }}</span>
 								</div>
 
 							</div>
 							<div class="mx-4">
-								<p class="card-text"> Rp 1.500.000,00</p>
+								<p class="card-text"> {{ $b->nominal }}</p>
 							</div>
 							<div class="mx-4">
 								<p class="card-text text-success"><b>Completed</b></p>
 							</div>
 						</div>
 
-						<div class=" my-2 d-flex align-items-center" style="">
-							<div class="mx-4">
-								<div class="d-flex align-items-center justify-content-center" style="background-color: #FF4550; border-radius: 40px; width: 40px; height: 40px;">
-									<i style="color: #FFFFFF;" class="fa-solid fa-arrow-trend-up"></i>
-								</div>
-							</div>
-							<div class="mx-4">
-								<div  style="display: flex; flex-direction: column;">
-									<span class="card-text">#232121</span>
-									<span class="card-text">2 March 2021, 13:45 PM</span>
-								</div>
-
-							</div>
-							<div class="mx-4">
-								<p class="card-text"> Rp 1.500.000,00</p>
-							</div>
-							<div class="mx-4">
-								<p class="card-text text-secondary"><b>Pending</b></p>
-							</div>
-						</div>
-
-
-						<div class="my-2 d-flex align-items-center" style="">
-							<div class="mx-4">
-								<div class="d-flex align-items-center justify-content-center" style="background-color: #FF4550; border-radius: 40px; width: 40px; height: 40px;">
-									<i style="color: #FFFFFF;" class="fa-solid fa-arrow-trend-up"></i>
-								</div>
-							</div>
-							<div class="mx-4">
-								<div  style="display: flex; flex-direction: column;">
-									<span class="card-text">#232121</span>
-									<span class="card-text">2 March 2021, 13:45 PM</span>
-								</div>
-
-							</div>
-							<div class="mx-4">
-								<p class="card-text"> Rp 1.500.000,00</p>
-							</div>
-							<div class="mx-4">
-								<p class="card-text text-danger"><b>Canceled</b></p>
-							</div>
-						</div>
-
+						@endforeach
 					</div>
 				</div>
 
@@ -203,36 +161,50 @@
 						</tr>
 					</thead>
 					<tbody>
-
-						<tr>
-							<th style="color: #587bcb; text-align: left;"><img width="40" height="40" style="border-radius: 50%; background-color: #587bcb;"> Tonny Loop</th>
-							<td><b>ID 123456</b></td>
-
-							<td class="d-flex align-items-center justify-content-center">
-
-								<div class="d-flex align-items-center justify-content-center" style="background-color: #FF4550; border-radius: 40px; width: 40px; height: 40px;">
-									<i style="color: #FFFFFF;" class="fa-solid fa-user"></i>
-								</div>
-
-								<div style="display: flex; flex-direction: column; margin-left: 15px;">
-									<span class="card-text" style="color: darkgray;">Class</span>
-									<span class="card-text"><b>VII A</b></span>
-								</div>
-
-							</td>
-
-							<td><b>$ 50,036</b></td>
-							<td>Dibayar</td>
-							<td>
+						@foreach($siswa as $s)
+							@foreach($s->biayasiswa as $bs)
+							<tr>
 								
-								<button type="button" class="btn btn-warning btn-sm" style="border-radius: 15px; width: 76px; font-size: 12px; height: 35px; font-weight: bold; color: white">Edit</button>
+								<th style="color: #587bcb; text-align: left;">{{ $s->nama }}</th>
+								<td><b>{{ $bs->jenis_biaya }}</b></td>
+{{-- 
+								<td class="d-flex align-items-center justify-content-center">
 
-								<button type="button" class="btn btn-danger btn-sm" style="border-radius: 15px; width: 76px; font-size: 12px; height: 35px; font-weight: bold;">Hapus</button>
+									<div class="d-flex align-items-center justify-content-center" style="background-color: #FF4550; border-radius: 40px; width: 40px; height: 40px;">
+										<i style="color: #FFFFFF;" class="fa-solid fa-user"></i>
+									</div>
 
-							</td>
-						</tr>
+									<div style="display: flex; flex-direction: column; margin-left: 15px;">
+										<span class="card-text" style="color: darkgray;">Class</span>
+										<span class="card-text"><b>VII A</b></span>
+									</div>
 
-						<tr>
+								</td> --}}
+								<td><b>{{ $bs->nominal }}</b></td>
+								@if ($bs->tanggal_pembayaran == '')
+									<td>-</td>
+									<td>Belum Dibayar</td>
+								@else
+								<td>{{ $bs->tanggal_pembayaran }}</td>
+								<td>Dibayar</td>
+								@endif
+								
+								
+								<td>
+									<a href="/keuangan/edit/{{ $bs->id }}">
+										<button type="button" class="btn btn-warning btn-sm" style="border-radius: 15px; width: 76px; font-size: 12px; height: 35px; font-weight: bold; color: white">Edit</button>
+									</a>
+									<a href="/keuangan/delete/{{ $bs->id }}">
+										<button type="button" class="btn btn-danger btn-sm" style="border-radius: 15px; width: 76px; font-size: 12px; height: 35px; font-weight: bold;">Hapus</button>
+									</a>
+									
+									
+								</td>
+								
+							</tr>
+							@endforeach
+						@endforeach
+						{{-- <tr>
 							<th style="color: #587bcb; text-align: left;"><img width="40" height="40" style="border-radius: 50%; background-color: #587bcb;"> Jordan Nico</th>
 							<td><b>ID 123456</b></td>
 
@@ -314,7 +286,7 @@
 								<button type="button" class="btn btn-danger btn-sm" style="border-radius: 15px; width: 76px; font-size: 12px; height: 35px; font-weight: bold;">Hapus</button>
 
 							</td>
-						</tr>
+						</tr> --}}
 
 
 					</tbody>
