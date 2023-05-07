@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/ujian', [App\Http\Controllers\guru\UjianController::class, 'index']);
     Route::get('/nilai', [App\Http\Controllers\guru\NilaiController::class, 'index']);
     Route::get('/tugas', [App\Http\Controllers\guru\TugasController::class, 'index']);
+    Route::get('/tugas/{mapel}', [App\Http\Controllers\guru\TugasController::class, 'requestMapel']);
+    Route::get('/tugas/{mapel}/tambah/{id}', [App\Http\Controllers\guru\TugasController::class, 'tambahTugas']);
+
+
     Route::get('/absen', [App\Http\Controllers\guru\AbsenController::class, 'index']);
     Route::get('/jadwal', [App\Http\Controllers\guru\JadwalController::class, 'index']);
    
