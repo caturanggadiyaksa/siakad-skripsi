@@ -6,10 +6,34 @@
         <div class="row">
 
             <div class="d-flex justify-content-center align-items-center" style="width: 150px; height: 40px; border-radius: 40px; padding: 6px 15px; border: 2px solid #4D44B5;">
-                <select name="" id="" style="border: none; background-color: transparent;">
-                    <option value="">Kelas</option>
-                    <option value="VII A">VII A</option>
+                <select name="mapelSelect" id="mapelSelect" style="border: none; background-color: transparent;">
+                    <option selected value="">Mapel</option>
+                    @foreach ($mapel as $m)
+                        <option value="{{ $m->nama }}"><a href="/tugas/{{ $m->nama }}">{{ $m->nama }}</a></option>
+                    @endforeach
                 </select>
+                <script>
+                    document.getElementById('mapelSelect').addEventListener('change', function() {
+                        var selectedMapel = this.value;
+                        if (selectedMapel !== '') {
+                            var url = '/tugas/' + encodeURIComponent(selectedMapel);
+                            window.location.href = url;
+                        }
+                    });
+                </script>
+                
+                <script>
+                    // Menyembunyikan loop data saat halaman pertama kali dimuat
+                    $(document).ready(function() {
+                        $('#mapelSelect').change(function() {
+                            var selectedMapel = $(this).children('option:selected').val();
+                           
+                            // Logika untuk menampilkan loop data terkait dengan mapel yang dipilih
+                            // Misalnya, dengan menggunakan AJAX untuk mengambil dan menampilkan data dari server
+                        });
+                    });
+                </script>
+                
             </div>
             <div class="d-flex justify-content-center align-items-center" style="width: 150px; height: 40px; border-radius: 40px; padding: 6px 15px; background: #4D44B5; ">
                 <a href="/siswa/tambah">
@@ -25,20 +49,56 @@
     </div>
 
     <div class="mt-4">
-        <table id="myTable" class="display">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Nomor Telepon</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-               
-            </tbody>
-        </table>
+        <div class="table mt-4 table-sm" style="text-align:center; color: #4D44B5;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Pertemuan</th>
+                        <th scope="col">Topik</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- @foreach ($result as $t )
+                        <tr>
+                            <td>{{ $t->id }}</td>
+                            <td>{{ $t->judul }}</td>
+                            <td>{{ $t->status }}</td>
+                            <td>view</td>
+                            
+                        </tr>
+                        
+                    @endforeach --}}
+    
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection
+
+{{-- <script>
+    $(document).ready(function() {
+        $('#mapelSelect').on('change', function() {
+            var selectedMapel = $(this).val();
+            var url = '/tugas/' + encodeURIComponent(selectedMapel);
+            console.log(selectedMapel);
+            // Kirim permintaan AJAX ke URL yang dihasilkan
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(response) {
+                    // Tangani respons dari server di sini
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    // Tangani kesalahan jika terjadi
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+
+</script> --}}
