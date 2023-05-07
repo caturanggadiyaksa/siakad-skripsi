@@ -36,7 +36,7 @@ class GuruController extends Controller
         ]);
 
         Guru::create([
-            'nip' => $request->nip,
+            
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
@@ -60,7 +60,7 @@ class GuruController extends Controller
         // ]);
 
         $guru = Guru::find($id);
-        $guru->nip = $request->nip;
+     
         $guru->nama = $request->nama;
         $guru->jenis_kelamin = $request->jenis_kelamin;
         $guru->alamat = $request->alamat;
@@ -74,12 +74,16 @@ class GuruController extends Controller
     public function delete($id) {
         $guru = Guru::find($id);
         $guru->delete();
+        // dd($guru);
         return redirect('/guru');
     }
 
     public function show($id) {
         $data = ['title' => 'Show Data Guru'];
         $guru = Guru::find($id);
+
+        // cek data guru
+        // dd($guru);
         return view('dashboard.admin.crud.guru.show', ['guru' => $guru], $data);
     }
 }
